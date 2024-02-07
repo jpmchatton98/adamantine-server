@@ -136,9 +136,13 @@ app.post("/db/deleteCharacter", function (req, res) {
     })
     .then((c) => {
       if (c !== null) {
-        characterModel.deleteOne({
-          guid: req.body.characterId,
-        });
+        characterModel
+          .deleteOne({
+            guid: req.body.characterId,
+          })
+          .then((i) => {
+            res.send({ msg: "deleted" });
+          });
       }
     });
 });
